@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import Fragments.EventsClassNew;
-import Fragments.Place;
+import Adapters.EventsClassNew;
 
 import android.util.Log;
 import android.widget.ListView;
@@ -73,36 +72,7 @@ public class HistoryUpcomingEvents extends Fragment {
     }
 
 
-    /*
-    void callFirebaseForUpcomingEvents(final View view,final DataSnapshot allEventsData) {
-        FirebaseApp.initializeApp(getContext());
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ref = rootRef.child("EVENTS_INFO");
 
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<EventsClassNew> eventsClasses = new ArrayList<>();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    String eventName = dataSnapshot1.getValue().toString();
-                    EventsClassNew eventsClass = allEventsData.child(eventName).getValue(EventsClassNew.class);
-                    if(isEventUpcoming(getDay(),eventsClass.getDate())) {
-                        eventsClasses.add(eventsClass);
-                    }
-                }
-                eventsClasses = sortEvents(eventsClasses);
-                populateListView(view,eventsClasses);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-    */
     boolean isEventUpcoming(String todayDate,String eventDate){
         boolean result = false;
         try {

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import Adapters.EventsClassNew;
 import Info.EventsClass;
 
 import android.util.Log;
@@ -34,7 +35,7 @@ public class EventsList extends Fragment {
 
     Context context;
 
-    ArrayList<EventsClass> myPlacesArray;
+    ArrayList<EventsClassNew> myPlacesArray;
 
     ProgressBar progressBar;
 
@@ -71,7 +72,7 @@ public class EventsList extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 myPlacesArray = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    EventsClass eventsClass = dataSnapshot1.getValue(EventsClass.class);
+                    EventsClassNew eventsClass = dataSnapshot1.getValue(EventsClassNew.class);
                     myPlacesArray.add(eventsClass);
                 }
 

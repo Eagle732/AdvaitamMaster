@@ -45,19 +45,6 @@ public class EventsClass implements Comparable<EventsClass>{
     }
 
 
-    public void setName(String name) {
-        name = name;
-    }
-
-    public void setDate(String date) {
-        date = date;
-    }
-
-    public void setTime(String time) {
-        time = time;
-    }
-
-
     public String getName() {
         return name;
     }

@@ -17,20 +17,20 @@ import Info.EventsClass;
  * Created by HP on 12/29/2017.
  */
 
-class EventsAdapter extends ArrayAdapter<EventsClass> {
+class EventsAdapter extends ArrayAdapter<EventsClassNew> {
 
     Context mContext;
     int mLayoutResourceId;
-    ArrayList<EventsClass> mData = new ArrayList<>();
+    ArrayList<EventsClassNew> mData = new ArrayList<>();
 
-    public EventsAdapter(Context context, int row, ArrayList<EventsClass> myPlacesArray) {
+    public EventsAdapter(Context context, int row, ArrayList<EventsClassNew> myPlacesArray) {
         super(context, row, myPlacesArray);
         this.mContext = context;
         this.mLayoutResourceId = R.layout.row;
         this.mData = myPlacesArray;
     }
     @Override
-    public EventsClass getItem(int position)
+    public EventsClassNew getItem(int position)
     {
         return super.getItem(position);
     }
@@ -51,7 +51,7 @@ class EventsAdapter extends ArrayAdapter<EventsClass> {
         else {
             holder = (PlaceHolder) row.getTag();
         }
-        EventsClass eventsClass = mData.get(position);
+        EventsClassNew eventsClass = mData.get(position);
         holder.eventName.setText(eventsClass.getName());
         holder.date.setText(eventsClass.getDate());
         holder.time.setText(eventsClass.getTime());

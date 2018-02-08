@@ -10,10 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import Fragments.EventsClassNew;
-import Fragments.Place;
-
-import android.util.Log;
+import Adapters.EventsClassNew;
 import android.widget.ListView;
 
 import com.google.firebase.FirebaseApp;

@@ -38,6 +38,7 @@ public class HistoryParticipatingEvents extends Fragment {
     Map<String,EventsClass> list = new HashMap<>();
     ArrayList<EventsClass> myPlacesArray;
     ListView mListView;
+    HashMap<String,String> listt = new HashMap<>();
     ProgressBar progressBar;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     public void ListOfParticipantFragment(){
@@ -80,13 +81,15 @@ public class HistoryParticipatingEvents extends Fragment {
                 myPlacesArray = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
 
+//                    listt.put(dataSnapshot1.getValue(EventsClass.class));
                     EventsClass eventsClass = dataSnapshot1.getValue(EventsClass.class);
-                    Log.d("mylog", dataSnapshot1.getValue().toString());
+                    Log.d("mylog11",dataSnapshot1.getKey());
 //                    Log.d("mylogggg", eventsClass.getDate().toString());
                     myPlacesArray.add(eventsClass);
 //                    Log.d("mylog logg", myPlacesArray.get(0).getDate().toString());
 
                 }
+                Toast.makeText(getContext(),myPlacesArray.get(0).getDate().toString(),Toast.LENGTH_SHORT).show();
 
             populateListView(view,myPlacesArray);
             }

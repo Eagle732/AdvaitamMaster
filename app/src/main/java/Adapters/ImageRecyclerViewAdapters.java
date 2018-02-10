@@ -50,8 +50,6 @@ public class ImageRecyclerViewAdapters extends RecyclerView.Adapter<ImageRecycle
                    imagesPosition1.add(Uri.parse(op.getImageUri()));
             }
         }
-//        Log.d("tag", "myTag " + imagesPosition1.size());
-
     }
 
     @Override
@@ -73,12 +71,10 @@ public class ImageRecyclerViewAdapters extends RecyclerView.Adapter<ImageRecycle
                 .error(R.drawable.background);
         Glide.with(mContext).load(imagesPosition1.get(position)).apply(options).into(holder.images);
 
-//        Log.d("tag", "myTag " + imagesPosition1.get(position));
 }
 
     @Override
     public int getItemCount() {
-//        Log.d("tag", "myTag " + imagesPosition1.size());
         return imagesPosition1.size();
     }
 
@@ -98,9 +94,7 @@ public class ImageRecyclerViewAdapters extends RecyclerView.Adapter<ImageRecycle
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(mContext, "clicked " + eventsData.get(getAdapterPosition()).getDescription(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(mContext, TabbedActivity.class);
-//                    intent.putExtra("object",)
                     intent.putExtra("object",eventsData.get(getAdapterPosition()));
                     intent.putExtra("reference",getAdapterPosition());
                     intent.putExtra("eventPos",event_pos);

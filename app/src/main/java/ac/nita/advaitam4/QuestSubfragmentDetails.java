@@ -76,7 +76,7 @@ public class QuestSubfragmentDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView textView = (TextView)view.findViewById(R.id.text_view);
+//        TextView textView = (TextView)view.findViewById(R.id.text_view);
 
     }
 

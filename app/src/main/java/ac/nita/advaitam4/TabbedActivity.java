@@ -78,6 +78,9 @@ public class  TabbedActivity extends AppCompatActivity {
     private FirebaseUser user;
     private String add1;
     private Map<String,items_for_list_of_participants> itemsData;
+    private Map<String,String>Oeganisers;
+    private Map<String,String>Results;
+    String addRes,addOrg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,15 +105,6 @@ public class  TabbedActivity extends AppCompatActivity {
         flag = sharedPreferences.getBoolean("FLAG", false);
 
         itemsData = new HashMap<>();
-        // Set up the ViewPager with the sections adapter.
-        //mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        //mViewPager.setAdapter(mSectionsPagerAdapter);
-//        Intent intent = new Intent();
-//        data = (EventsData)this.getIntent().getSerializableExtra("object");
-        // b = intent.getBundleExtra("bundle");
-//        if(data != null)
-//            Toast.makeText(getApplicationContext(),data.toString(),Toast.LENGTH_SHORT).show();
-//            Log.d("myTag1",);
 
         switch(event_pos){
             case 1:
@@ -148,6 +142,8 @@ public class  TabbedActivity extends AppCompatActivity {
         final String add = "EVENTS_INFO/"+event_name+ position+"/ListOfParticipants/"+user.getUid()+"/";
         add1 = "EVENTS_INFO/"+event_name+ position+"/ListOfParticipants/";
 
+        addOrg = "EVENTS_INFO/"+event_name+ position+"/Organisers/";
+        addRes = "EVENTS_INFO/"+event_name+ position+"/Results/";
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,7 +170,7 @@ public class  TabbedActivity extends AppCompatActivity {
                 listt.put("events",data1);
                 user_info eventParticipated = new user_info((HashMap<String, EventsClass>) listt);
                 DatabaseReference ref = firebaseDatabase.getReference("USER/"+user.getUid()+"/PARTICIPATING_EVENTS");
-                ref.push().setValue(listt);
+                ref.push().setValue(data1);
             }
         });
 
@@ -342,17 +338,17 @@ public class  TabbedActivity extends AppCompatActivity {
             {
                 OrganisersFragment organisersFragment = new OrganisersFragment();
                 Bundle bundle1 = new Bundle();
-                bundle1.putString("KEY2",add1);
+                bundle1.putString("KEY2",addOrg);
                 organisersFragment.setArguments(bundle1);
-                return new OrganisersFragment();
+                return organisersFragment;
             }
             if (position == 2)
             {
                 ResultsFragment result = new ResultsFragment();
                 Bundle bundle2 = new Bundle();
-                bundle2.putString("KEY3",add1);
+                bundle2.putString("KEY3",addRes);
                 result.setArguments(bundle2);
-                return new ResultsFragment();
+                return result;
             }else{
                 ListOfParticipantFragment listOfParticipantFragment = new ListOfParticipantFragment();
                 Bundle bundle3 = new Bundle();

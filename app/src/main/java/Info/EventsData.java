@@ -21,11 +21,10 @@ public class EventsData implements Parcelable {
     private String ImageUri;
     private Map<String,items_for_list_of_participants> ListOfParticipants = new HashMap<>();
     private String Name;
+    private Map<String ,String> Results;
+    private Map<String,String> Organisers;
     private String Time;
 
-    public static Creator<EventsData> getCREATOR() {
-        return CREATOR;
-    }
 
     protected EventsData(Parcel in) {
         Date = in.readString();
@@ -33,7 +32,20 @@ public class EventsData implements Parcelable {
         ImageUri = in.readString();
         Name = in.readString();
         Time = in.readString();
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Date);
+        dest.writeString(Description);
+        dest.writeString(ImageUri);
+        dest.writeString(Name);
+        dest.writeString(Time);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<EventsData> CREATOR = new Creator<EventsData>() {
@@ -76,7 +88,23 @@ public class EventsData implements Parcelable {
         ImageUri = imageUri;
     }
 
-    public EventsData(String date, String desc, String Imagesuri, Map<String,items_for_list_of_participants> parti , String name, String time) {
+    public Map<String, String> getResults() {
+        return Results;
+    }
+
+    public void setResults(Map<String, String> results) {
+        Results = results;
+    }
+
+    public Map<String, String> getOrganisers() {
+        return Organisers;
+    }
+
+    public void setOrganisers(Map<String, String> organisers) {
+        Organisers = organisers;
+    }
+
+    public EventsData(String date, String desc, String Imagesuri, Map<String,items_for_list_of_participants> parti , String name, String time, Map<String,String> result, Map<String,String>organisers) {
 
 //         Map<String,items_for_list_of_participants> list = new  HashMap<>();
          this.Date = date;
@@ -84,6 +112,8 @@ public class EventsData implements Parcelable {
          this.ImageUri = Imagesuri;
          this.ListOfParticipants = parti;
          this.Name = name;
+         this.Results = result;
+         this.Organisers = organisers;
          this.Time = time;
     }
 
@@ -114,19 +144,6 @@ public class EventsData implements Parcelable {
 
 
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-
-        parcel.writeString(Date);
-        parcel.writeString(Description);
-        parcel.writeString(ImageUri);
-        parcel.writeString(Name);
-        parcel.writeString(Time);
-    }
 
 }

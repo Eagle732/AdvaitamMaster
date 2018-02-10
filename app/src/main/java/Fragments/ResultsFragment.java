@@ -1,12 +1,16 @@
 package Fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +18,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import ac.nita.advaitam4.R;
 
@@ -23,6 +32,9 @@ import ac.nita.advaitam4.R;
 
 public class ResultsFragment extends Fragment {
 
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	/* *
@@ -30,35 +42,45 @@ public class ResultsFragment extends Fragment {
 	* 2. Setup the UI
 	* 3. Return the rootView
 	* */
-        return inflater.inflate(R.layout.fragment_results, container, false);
-    }
+        final View rootView =  inflater.inflate(R.layout.fragment_results, container, false);
 
-    @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+	    String add1 = getArguments().getString("KEY3");
+        final Map<String ,String> ItemsData = new HashMap<>();
+        final List<String> myPlacesArray = new ArrayList<>();
+        DatabaseReference participantsRef = firebaseDatabase.getReference(add1);
 
 
-        String idName = "event123";
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference reference = firebaseDatabase.getReference("data/events/"+idName+"/result");
-        reference.addValueEventListener(new ValueEventListener() {
+        participantsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try {
+                myPlacesArray.clear();
+                if(dataSnapshot.exists()){
+                    int i=0;
+                    for(DataSnapshot  op : dataSnapshot.getChildren()){
 
-                    String resultList="The Winners Are .:\n\n";
-
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        resultList+=snapshot.getValue()+"\n\n";
+                        String items = op.getValue().toString();
+//                        ItemsData.put("Name"+i,items);
+                        myPlacesArray.add(items);
+                        i++;
                     }
-
-                    TextView resultTV = (TextView)view.findViewById(R.id.result_tv);
-                    resultTV.setText(resultList);
-
-
-                } catch (Exception e){
-                    e=e;
                 }
+
+                Log.d("Tag",myPlacesArray.toString());
+                ListView mListView =  rootView.findViewById(R.id.listview_results);
+//                PlaceArrayAdapter mArrayAdapter = new PlaceArrayAdapter(getActivity(), R.layout.row, myPlacesArray);
+//                mListView.setAdapter(mArrayAdapter);
+////
+                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getActivity(),R.layout.list_item,myPlacesArray){
+                    @NonNull
+                    @Override
+                    public View getView(int position, View convertView, @NonNull ViewGroup parent){
+                        View view = super.getView(position,convertView,parent);
+                        TextView textView = (TextView)view.findViewById(R.id.text_11);
+                        textView.setTextColor(Color.WHITE);
+                        return view;
+                    }
+                };
+                mListView.setAdapter(mAdapter);
             }
 
             @Override
@@ -66,6 +88,44 @@ public class ResultsFragment extends Fragment {
 
             }
         });
+        return rootView;
+
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+//        String add1 = getArguments().getString("K");
+//        String idName = "event123";
+//        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+//        DatabaseReference reference = firebaseDatabase.getReference("data/events/"+idName+"/result");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                try {
+//
+//                    String resultList="The Winners Are .:\n\n";
+//
+//                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                        resultList+=snapshot.getValue()+"\n\n";
+//                    }
+//
+//                    TextView resultTV = (TextView)view.findViewById(R.id.result_tv);
+//                    resultTV.setText(resultList);
+//
+//
+//                } catch (Exception e){
+//                    e=e;
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
     }
 }

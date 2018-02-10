@@ -118,12 +118,12 @@ public class HomePart2 extends Fragment{
 
 
 
-        EventsData[] info = {
-                new EventsData("AA-BB-CCCC", "TECHNICAL 1 EVENT DETAILS...\nDetails 123...\nDetails 456...\nDetails 789","" ,new HashMap<String, items_for_list_of_participants>()  , "Technical Event 1", "HH:MM:SS")
-        };
-        values1.add(info[0]);
-        values2.add(info[0]);
-        values3.add(info[0]);
+//        EventsData[] info = {
+//                new EventsData("AA-BB-CCCC", "TECHNICAL 1 EVENT DETAILS...\nDetails 123...\nDetails 456...\nDetails 789","" ,new HashMap<String, items_for_list_of_participants>()  , "Technical Event 1", "HH:MM:SS")
+//        };
+//        values1.add(info[0]);
+//        values2.add(info[0]);
+//        values3.add(info[0]);
 
 
         recyclerView1 = view.findViewById(R.id.rec1);

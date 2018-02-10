@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import Adapters.EventsClassNew;
+import Fragments.*;
 import Info.EventsClass;
 
 import android.util.Log;
@@ -36,7 +37,7 @@ public class EventsList extends Fragment {
     Context context;
 
     ArrayList<EventsClassNew> myPlacesArray;
-
+    ListView mListView;
     ProgressBar progressBar;
 
     public void ListOfParticipantFragment(){
@@ -64,26 +65,32 @@ public class EventsList extends Fragment {
 
         FirebaseApp.initializeApp(getContext());
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ref = rootRef.child("data/events");
+        DatabaseReference ref = rootRef.child("EVENTS_INFO");
 
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+//                myPlacesArray = new ArrayList<>();
+                mListView = (ListView) view.findViewById(R.id.events_listview);
                 myPlacesArray = new ArrayList<>();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    EventsClassNew eventsClass = dataSnapshot1.getValue(EventsClassNew.class);
-                    myPlacesArray.add(eventsClass);
-                }
-
-
-                Log.d("mylog", " Arraylist size is "+myPlacesArray.size());
-                ListView mListView = (ListView) view.findViewById(R.id.events_listview);
-                EventsAdapter mArrayAdapter = new EventsAdapter(getActivity(), R.layout.row, myPlacesArray);
-                mListView.setAdapter(mArrayAdapter);
-
-                progressBar.setVisibility(View.GONE);
-
+                myPlacesArray = getAllEvents(dataSnapshot);
+                //myPlacesArray = sortEvents(myPlacesArray);
+                populateListView(view, myPlacesArray);
+//                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+////                    EventsClassNew eventsClass = dataSnapshot1.getValue(EventsClassNew.class);
+//                    EventsClassNew eventsClass =  getAllEvents(dataSnapshot1);
+//                    myPlacesArray.add(eventsClass);
+//                }
+//
+//
+//                Log.d("mylog", " Arraylist size is "+myPlacesArray.size());
+//                ListView mListView = (ListView) view.findViewById(R.id.events_listview);
+//                EventsAdapter mArrayAdapter = new EventsAdapter(getActivity(), R.layout.row, myPlacesArray);
+//                mListView.setAdapter(mArrayAdapter);
+//
+//                progressBar.setVisibility(View.GONE);
+//
             }
 
             @Override
@@ -91,7 +98,30 @@ public class EventsList extends Fragment {
 
             }
         });
+    }
+    void populateListView(View view,ArrayList<EventsClassNew> arrayList){
+
+        EventsAdapter eventsAdapter = new EventsAdapter(getContext(),1,arrayList);
+        if(eventsAdapter!=null)
+            mListView.setAdapter(eventsAdapter);
+    }
+
+        ArrayList<EventsClassNew> getAllEvents(DataSnapshot dataSnapshot){
+
+            ArrayList<EventsClassNew> events = new ArrayList<>();
+
+            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
+                    EventsClassNew eventsClass = dataSnapshot2.getValue(EventsClassNew.class);
+
+                        events.add(eventsClass);
+                    }
+                }
+
+
+            return events;
+        }
 
 
     }
-}
+

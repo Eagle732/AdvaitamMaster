@@ -114,4 +114,5 @@ public class SplashScreen extends AppCompatActivity {
         timerThread.start();
     }
 
+
 }

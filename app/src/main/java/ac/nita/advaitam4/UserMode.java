@@ -97,14 +97,19 @@ public class UserMode extends AppCompatActivity {
 
 
     void httpcallDownloadCounter(){
-        SharedPreferences sharedPreferences = getSharedPreferences("FLAGS",MODE_PRIVATE);
-        boolean isFirstTime = sharedPreferences.getBoolean("is_first_time",true);
-        if(isFirstTime) {
-            String url = "";
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("is_first_time",false);
-            new GetUrlContentTask().execute(url);
-        }
+       // try {
+            SharedPreferences sharedPreferences = getSharedPreferences("FLAGS", MODE_PRIVATE);
+            String isFirstTime = sharedPreferences.getString("is_first_time", "YES");
+            if (isFirstTime.equals("YES")) {
+                String url = "http://eduhub.springpebbles.in/advaitam/apis/counter/index.php";
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("is_first_time", "NO");
+                editor.commit();
+                new GetUrlContentTask().execute(url);
+            }
+       // } catch (IOException e){
+
+        //}
     }
     private class GetUrlContentTask extends AsyncTask<String, Integer, String> {
         protected String doInBackground(String... urls) {

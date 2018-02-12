@@ -36,20 +36,24 @@
             </android.support.design.widget.CollapsingToolbarLayout>
 
         </android.support.design.widget.AppBarLayout>
+
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="How To Play"
                     android:textColor="#F5F5F5"
-                    android:textSize="30sp"/>
+                    android:textSize="30sp" />
+
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
@@ -70,8 +74,6 @@
                 <!--android:text="End"/>-->
                 <!--</LinearLayout>-->
             </LinearLayout>
-
-
         </android.support.v4.widget.NestedScrollView>
 
 

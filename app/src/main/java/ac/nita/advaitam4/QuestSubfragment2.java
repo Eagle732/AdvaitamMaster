@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.widget.ShareButton;
@@ -39,6 +42,10 @@ public class QuestSubfragment2 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    public int[][] LEADERBOARD_DETAILS = {{R.id.circleImageView1,R.id.circleImageView2,R.id.circleImageView3,R.id.circleImageView4,R.id.circleImageView5}
+                                           ,{R.id.name1,R.id.name2,R.id.name3,R.id.name4,R.id.name5}
+                                            ,{R.id.score1,R.id.score2,R.id.score3,R.id.score4,R.id.score5}};
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -91,8 +98,8 @@ public class QuestSubfragment2 extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference users = databaseReference.child("data/user");
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference users = databaseReference.child("user");
 
 
         SharePhoto sharePhoto1 = new SharePhoto.Builder()
@@ -114,9 +121,17 @@ public class QuestSubfragment2 extends Fragment {
 
             ArrayList<Long> pointsArray = new ArrayList<Long>();
             ArrayList<String> namesArray = new ArrayList<String>();
+            ArrayList<String> imageUrlArray = new ArrayList<String>();
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                if(dataSnapshot.getChildrenCount()<1){
+                    LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.leaders_container);
+                    linearLayout.setVisibility(View.GONE);
+                    return;
+                }
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
@@ -128,9 +143,11 @@ public class QuestSubfragment2 extends Fragment {
 
                         try {
                             namesArray.add(snapshot.child("name").getValue().toString());
+                            imageUrlArray.add(snapshot.child("download_uri").getValue().toString());
                             Log.d("mylog","namesarray entries "+snapshot.child("name").getValue().toString());
                         }catch (Exception e){
                             namesArray.add("Name Not Found");
+                            imageUrlArray.add("NOT_AVAILABLE");
                         }
 
                         pointsArray.add(sum);
@@ -138,6 +155,7 @@ public class QuestSubfragment2 extends Fragment {
 
                     String[] names = new String[5];
                     long[] points = new long[5];
+                    String[] imagUrls = new String[5];
 
                     String textviewData = "";
 
@@ -152,7 +170,18 @@ public class QuestSubfragment2 extends Fragment {
 
                         points[i] = pointsArray.get(maxIndex);
                         names[i] = namesArray.get(maxIndex);
-                        textviewData = textviewData + names[i] + " ["+points[i]+"]" + "\n";
+                        imagUrls[i] = imageUrlArray.get(maxIndex);
+                        //textviewData = textviewData + names[i] + " ["+points[i]+"]" + "\n";
+                        TextView nameTV = (TextView)view.findViewById(LEADERBOARD_DETAILS[1][i]);
+                        nameTV.setText(names[i]);
+                        TextView pointsTV = (TextView)view.findViewById(LEADERBOARD_DETAILS[2][i]);
+                        pointsTV.setText(""+points[i]);
+                        ImageView profileImage = (ImageView)view.findViewById(LEADERBOARD_DETAILS[0][i]);
+                        if(imagUrls[i].equals("NOT_AVAILABLE")){
+                            Glide.with(getContext()).load(R.mipmap.ic_launcher).into(profileImage);
+                        } else {
+                            Glide.with(getContext()).load(imagUrls[i]).into(profileImage);
+                        }
                         Log.d("mylog","textviewData "+names[i] + " ["+points[i]+"]");
                         long ele = 0;
                         pointsArray.set(maxIndex,ele);
@@ -160,8 +189,8 @@ public class QuestSubfragment2 extends Fragment {
                     }
 
 
-                    TextView leadsrBoards = (TextView) view.findViewById(R.id.leader_board);
-                    leadsrBoards.setText(textviewData);
+                    //TextView leadsrBoards = (TextView) view.findViewById(R.id.leader_board);
+                    //leadsrBoards.setText(textviewData);
 
 
 

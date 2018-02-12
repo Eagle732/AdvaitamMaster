@@ -63,7 +63,7 @@ public class QuestSubfragment1 extends Fragment {
 
     final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     //final DatabaseReference mCounterRef = mRootRef.child("data/user/"+user.getUid()+"/points");
-    final DatabaseReference mCounterRef = mRootRef.child("data/user/");
+    final DatabaseReference mCounterRef = mRootRef.child("USER");
 
 
 

@@ -40,7 +40,6 @@ public class GalleryPage extends Fragment {
         View view = inflater.inflate(R.layout.gallerypart2,container,false);
         recyclerView = view.findViewById(R.id.recForGallery);
         mRef = FirebaseDatabase.getInstance().getReference();
-
         return view;
     }
 
@@ -49,6 +48,7 @@ public class GalleryPage extends Fragment {
 
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
+        getActivity().setTitle("Gallery");
         readData(new MyCallback2() {
             @Override
             public void onCallback2(List<String> list) {

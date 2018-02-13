@@ -90,7 +90,7 @@ public class ListOfParticipantFragment extends Fragment {
                     }
                 }
 
-                Log.d("Tag",myPlacesArray.toString());
+//                Log.d("Tag",myPlacesArray.toString());
                 ListView mListView =  rootView.findViewById(R.id.events_listview);
                 PlaceArrayAdapter mArrayAdapter = new PlaceArrayAdapter(getActivity(), R.layout.row, myPlacesArray);
                 mListView.setAdapter(mArrayAdapter);

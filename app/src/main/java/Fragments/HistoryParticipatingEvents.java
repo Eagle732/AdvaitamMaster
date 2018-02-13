@@ -82,7 +82,7 @@ public class HistoryParticipatingEvents extends Fragment {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
 
                     EventsClass eventsClass = dataSnapshot1.getValue(EventsClass.class);
-                    Log.d("mylog11",dataSnapshot1.getKey());
+//                    Log.d("mylog11",dataSnapshot1.getKey());
                     myPlacesArray.add(eventsClass);
 
                 }

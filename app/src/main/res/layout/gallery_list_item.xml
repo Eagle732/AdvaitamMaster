@@ -9,9 +9,8 @@
     android:paddingStart="4dp">
         <ImageView
             android:id="@+id/GalleryElement"
-
             android:layout_width="360dp"
-            android:layout_height="160dp"
+            android:layout_height="260dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/advaitam_4_logo" />
+             />
     </RelativeLayout>

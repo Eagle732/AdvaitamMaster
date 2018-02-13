@@ -36,16 +36,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     public GalleryAdapter(Context mContext, List<String> uri){
         this.mContext = mContext;
         this.uriList = uri;
-
-
-
-
     }
-
-
-
-
-
     @Override
     public GalleryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflator = LayoutInflater.from(parent.getContext());
@@ -64,8 +55,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
                 .override(100,100)
                 .placeholder(R.drawable.advaitam_4_logo)
                 .error(R.drawable.advaitam_4_logo);
-        Glide.with(mContext).asBitmap().load(Uri.parse(uriList.get(position))).apply(options).into(holder.images);
-//        Toast.makeText(mContext,uriList.get(position).toString(),Toast.LENGTH_SHORT).show();
+        Glide.with(mContext).asBitmap().load(uriList.get(position)).apply(options).into(holder.images);
 
     }
 

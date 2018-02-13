@@ -330,7 +330,7 @@ public class Categories extends AppCompatActivity
         } else if (id == R.id.nav_events) {
             fragment = new Events();
         }   else if (id == R.id.nav_gallery) {
-            fragment = new GalleryPage();
+            fragment = new Gallery();
         }  else if (id == R.id.nav_quest) {
             fragment = new Quest();
         }  else if (id == R.id.nav_qrscanner) {

@@ -122,7 +122,7 @@ public class  TabbedActivity extends AppCompatActivity {
                 break;
         }
 
-        Toast.makeText(getApplicationContext(),event_name+"  "+event_pos,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(),event_name+"  "+event_pos,Toast.LENGTH_SHORT).show();
 
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);

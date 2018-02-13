@@ -76,8 +76,6 @@ public class EventsClassNew implements Comparable<EventsClassNew> {
     }
 
     public EventsClassNew(String date, String desc, String Imagesuri, Map<String,items_for_list_of_participants> parti , String name, String time) {
-
-//         Map<String,items_for_list_of_participants> list = new  HashMap<>();
         this.Date = date;
         this.Description = desc;
         this.ImageUri = Imagesuri;

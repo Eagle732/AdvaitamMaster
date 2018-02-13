@@ -56,15 +56,15 @@ public class OrganisersFragment extends Fragment {
                     for(DataSnapshot  op : dataSnapshot.getChildren()){
 
                         String items = op.getValue().toString();
-                        Log.d("hello"+i,items);
+//                        Log.d("hello"+i,items);
                         myPlacesArray.add(items);
                         i++;
                     }
-                    Log.d("hello "+i+" ",myPlacesArray.toString());
+//                    Log.d("hello "+i+" ",myPlacesArray.toString());
                 }
 
-                Log.d("Tag",myPlacesArray.toString());
-                Toast.makeText(getContext(),myPlacesArray.toString(),Toast.LENGTH_SHORT).show();
+//                Log.d("Tag",myPlacesArray.toString());
+//                Toast.makeText(getContext(),myPlacesArray.toString(),Toast.LENGTH_SHORT).show();
                 mListView =  rootView.findViewById(R.id.organisers);
 
                 ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getActivity(),

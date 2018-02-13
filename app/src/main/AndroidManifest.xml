@@ -57,13 +57,14 @@
         <activity
             android:screenOrientation="portrait"
             android:name=".MainActivity">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <data android:scheme="http" android:host="deltaprogram.us"/>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

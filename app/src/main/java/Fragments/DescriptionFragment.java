@@ -52,7 +52,7 @@ public class DescriptionFragment extends Fragment {
 //        idName=getArguments().getBundle("Key");
 //        Log.d("mylog","Idname "+idName);
         View view=inflater.inflate(R.layout.fragment_description, container, false);
-         TextView tv=(TextView)view.findViewById(R.id.name);
+        TextView tv=(TextView)view.findViewById(R.id.name);
         tv.setText("EVENT NAME: " + name);
         tv=(TextView)view.findViewById(R.id.desc);
         tv.setText(desc);

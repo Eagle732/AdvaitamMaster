@@ -67,7 +67,8 @@ import java.util.ArrayList;
                 .placeholder(R.drawable.advaitam_4_logo)
                 .error(R.drawable.advaitam_4_logo);
 //        Toast.makeText(getContext(),eventsClass.getImage(),Toast.LENGTH_SHORT).show();
-        Glide.with(mContext).load(Uri.parse(eventsClass.getImage())).apply(options).into(holder.iv);
+        String im = eventsClass.getImage();
+        Glide.with(mContext).load(im).apply(options).into(holder.iv);
         return row;
     }
     private static class PlaceHolder {

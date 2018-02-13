@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,8 @@ public class HomePart2 extends Fragment{
     public List<EventsData> values1 = new ArrayList<>(),values2 = new ArrayList<>(),values3 = new ArrayList<>();
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
-    ProgressBar progressBar,progressBar1,progressBar2;
-    ImageRecyclerViewAdapters adapter1,adapter2,adapter3;
+    private ProgressBar progressBar,progressBar1,progressBar2;
+    private ImageRecyclerViewAdapters adapter1,adapter2,adapter3;
 
     public HomePart2(){
 
@@ -93,7 +94,7 @@ public class HomePart2 extends Fragment{
         {
             dots[i]=new ImageView(getContext());
             dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.nonactive));
-            LinearLayout.LayoutParams params=new  LinearLayout.LayoutParams( LinearLayout.LayoutParams
+            LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams( LinearLayout.LayoutParams
                     .WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT );
             params.setMargins(8,0,8,0);
             sliderDotspanel.addView(dots[i], params);
@@ -115,15 +116,6 @@ public class HomePart2 extends Fragment{
             public void onPageScrollStateChanged(int state) {
             }
         });
-
-
-
-//        EventsData[] info = {
-//                new EventsData("AA-BB-CCCC", "TECHNICAL 1 EVENT DETAILS...\nDetails 123...\nDetails 456...\nDetails 789","" ,new HashMap<String, items_for_list_of_participants>()  , "Technical Event 1", "HH:MM:SS")
-//        };
-//        values1.add(info[0]);
-//        values2.add(info[0]);
-//        values3.add(info[0]);
 
 
         recyclerView1 = view.findViewById(R.id.rec1);
@@ -155,6 +147,8 @@ public class HomePart2 extends Fragment{
                 progressBar1.setVisibility(View.GONE);
                 progressBar2.setVisibility(View.GONE);
             }
+
+
         });
 
 
@@ -170,7 +164,11 @@ public class HomePart2 extends Fragment{
                             viewPager.setCurrentItem(1);
                         } else if (viewPager.getCurrentItem() == 1) {
                             viewPager.setCurrentItem(2);
-                        } else {
+                        } else if(viewPager.getCurrentItem() == 2) {
+                            viewPager.setCurrentItem(3);
+                        }else if(viewPager.getCurrentItem() == 3){
+                            viewPager.setCurrentItem(4);
+                        }else {
                             viewPager.setCurrentItem(0);
                         }
                     }
@@ -206,7 +204,7 @@ public class HomePart2 extends Fragment{
                         values3.add(dataSnapshot1.getValue(EventsData.class));
                     }
                     myCallback.onCallback(values1,values2,values3);
-//                    Log.d("tag", "myData3 " + values1);
+                    Log.d("tag111", "myData3 " + values1.get(0).getImageUri());
                 }else{
                                                    }
             }

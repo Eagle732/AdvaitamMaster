@@ -120,7 +120,7 @@ public class EditProfile extends Fragment {
         editor.putString("NAME",name).apply();
         editor.putString("CONTACT",number).apply();
         editor.putString("ENROLL",enroll).apply();
-
+        editor.putString("COLLEGE",spinnerItem).apply();
             user_info user_data = new user_info(uid,name,enroll,number,uri.toString(),spinnerItem);
             Log.d("data" ,"" +user_data.getUid()+"  "+user_data.getName()+"  "+user_data.getContact()+"  "+user_data.getEnroll()+"  "+user_data.getDownload_uri() + user_data.getCollege());
             mRef.child("USER").child(uid+"/USER_INFO").setValue(user_data);
@@ -179,11 +179,11 @@ public class EditProfile extends Fragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()) {
 //                    Log.d("valueName:", "DATA : "+ dataSnapshot);
-                            editor.putString("NAME",(String)dataSnapshot.child("name").getValue()).apply();
+                            editor.putString("NAME",(String)dataSnapshot.child("Name").getValue()).apply();
                             editor.putString("CONTACT",(String)dataSnapshot.child("contact").getValue()).apply();
                             editor.putString("ENROLL",(String)dataSnapshot.child("enroll").getValue()).apply();
                             editor.putString("COLLEGE",(String)dataSnapshot.child("college").getValue()).apply();
-//                    editName.setText((String)dataSnapshot.child("name").getValue());
+//                    editName.setText((String)dataSnapshot.child("Name").getValue());
                         }
                     }
                     @Override

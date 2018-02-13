@@ -127,8 +127,8 @@ public class QuestSubfragment2 extends Fragment {
                         }
 
                         try {
-                            namesArray.add(snapshot.child("name").getValue().toString());
-                            Log.d("mylog","namesarray entries "+snapshot.child("name").getValue().toString());
+                            namesArray.add(snapshot.child("Name").getValue().toString());
+                            Log.d("mylog","namesarray entries "+snapshot.child("Name").getValue().toString());
                         }catch (Exception e){
                             namesArray.add("Name Not Found");
                         }
@@ -236,7 +236,7 @@ public class QuestSubfragment2 extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        // TODO: Update argument type and Name
         void onFragmentInteraction(Uri uri);
     }
 }

@@ -34,12 +34,11 @@ public class ImageRecyclerViewAdapters extends RecyclerView.Adapter<ImageRecycle
 
     private ProgressBar progressBar;
     private List<EventsData> eventsData = new ArrayList<>();
-    private Integer[] imagesPosition = {R.drawable.gate, R.drawable.dj, R.drawable.cultural, R.drawable.robot, R.drawable.sports};
+//    private Integer[] imagesPosition = {R.drawable.gate, R.drawable.dj, R.drawable.cultural, R.drawable.robot, R.drawable.sports};
     private List<Uri> imagesPosition1 = new ArrayList<>();
     Context mContext;
     int event_pos;
 
-    int position = 0;
 
     public ImageRecyclerViewAdapters(Context context, List<EventsData> eventsData,int event_pos) {
         this.mContext = context;
@@ -67,8 +66,8 @@ public class ImageRecyclerViewAdapters extends RecyclerView.Adapter<ImageRecycle
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .skipMemoryCache(true)
-                .placeholder(R.drawable.background)
-                .error(R.drawable.background);
+                .placeholder(R.drawable.advaitam_4_logo)
+                .error(R.drawable.advaitam_4_logo);
         Glide.with(mContext).load(imagesPosition1.get(position)).apply(options).into(holder.images);
 
 }

@@ -2,6 +2,7 @@ package Adapters;
 
 import android.os.Parcel;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ public class EventsClassNew implements Comparable<EventsClassNew> {
     private Map<String, items_for_list_of_participants> ListOfParticipants = new HashMap<>();
     private String Name;
     private String Time;
+    private String Uri;
 
 
 
@@ -65,6 +67,14 @@ public class EventsClassNew implements Comparable<EventsClassNew> {
         ImageUri = imageUri;
     }
 
+    public String getUri() {
+        return Uri;
+    }
+
+    public void setUri(String uri) {
+        Uri = uri;
+    }
+
     public EventsClassNew(String date, String desc, String Imagesuri, Map<String,items_for_list_of_participants> parti , String name, String time) {
 
 //         Map<String,items_for_list_of_participants> list = new  HashMap<>();
@@ -74,6 +84,12 @@ public class EventsClassNew implements Comparable<EventsClassNew> {
         this.ListOfParticipants = parti;
         this.Name = name;
         this.Time = time;
+
+    }
+
+    public EventsClassNew(String uri,String Name){
+        this.ImageUri = uri;
+        this.Name = Name;
     }
 
     public String getDate() {

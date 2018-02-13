@@ -15,7 +15,7 @@ import android.widget.ImageView;
 public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer [] images = {R.drawable.gate,R.drawable.dj,R.drawable.cultural,R.drawable.robot,R.drawable.sports};
+    private Integer [] images = {R.drawable.gate,R.drawable.dj,R.drawable.slider1,R.drawable.slider2,R.drawable.slider3};
 
     public ViewPagerAdapter(Context context) {
         this.context = context;

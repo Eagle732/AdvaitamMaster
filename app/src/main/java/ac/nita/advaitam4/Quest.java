@@ -154,7 +154,7 @@ public class Quest extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        getActivity().setTitle("QUEST");
         MyPageerAdapter myPageerAdapter = new MyPageerAdapter(getChildFragmentManager());
 
         viewPager = (ViewPager)view.findViewById(R.id.view_pager);
@@ -206,7 +206,7 @@ public class Quest extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        // TODO: Update argument type and Name
         void onFragmentInteraction(Uri uri);
     }
 }

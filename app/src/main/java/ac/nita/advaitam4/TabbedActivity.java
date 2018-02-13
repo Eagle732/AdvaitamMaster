@@ -81,6 +81,8 @@ public class  TabbedActivity extends AppCompatActivity {
     private Map<String,String>Oeganisers;
     private Map<String,String>Results;
     String addRes,addOrg;
+    String name1,cont1,enroll1;
+    boolean profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,19 +109,20 @@ public class  TabbedActivity extends AppCompatActivity {
         itemsData = new HashMap<>();
 
         switch(event_pos){
-            case 1:
+            case 0:
                 event_name = "CULTURAL_INFO/cultural";
                 break;
-            case 2:
+            case 1:
                 event_name = "SPORTS_INFO/sports";
                 break;
-            case 0:
+            case 2:
                 event_name = "TECHNICAL_INFO/technical";
                 break;
             default:
                 break;
         }
 
+        Toast.makeText(getApplicationContext(),event_name+"  "+event_pos,Toast.LENGTH_SHORT).show();
 
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -137,6 +140,16 @@ public class  TabbedActivity extends AppCompatActivity {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
+        name1 = sharedPreferences.getString("NAME", " ");
+        enroll1 = sharedPreferences.getString("ENROLL", " ");
+        cont1 = sharedPreferences.getString("CONTACT", " ");
+
+        if ((name1.equals(" ") && enroll1.equals(" ") && cont1.equals(" "))) {
+            profile = true;
+
+        } else {
+            profile = false;
+        }
 
         final items_for_list_of_participants items = new items_for_list_of_participants(sharedPreferences.getString("NAME", "NAME"),sharedPreferences.getString("ENROLL", "ENROLL"), sharedPreferences.getString("CONTACT", "CONTACT"));
         final String add = "EVENTS_INFO/"+event_name+ position+"/ListOfParticipants/"+user.getUid()+"/";
@@ -147,30 +160,37 @@ public class  TabbedActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (profile) {
+                    Toast.makeText(getApplicationContext(),"oops ! You have to first complete your Profile",Toast.LENGTH_SHORT).show();
+                } else {
 
-                progressBar.setVisibility(View.VISIBLE);
-                DatabaseReference eventReference = firebaseDatabase.getReference(add);
-                eventReference.setValue(items, new DatabaseReference.CompletionListener() {;
-//                eventReference.push().setValue(new Place(sharedPreferences.getString("NAME", "NAME"), sharedPreferences.getString("ENROLL", "ENROLL"), sharedPreferences.getString("CONTACT", "CONTACT")), new DatabaseReference.CompletionListener() {
+
+                    progressBar.setVisibility(View.VISIBLE);
+                    DatabaseReference eventReference = firebaseDatabase.getReference(add);
+                    eventReference.setValue(items, new DatabaseReference.CompletionListener() {
+                        ;
+
+                        //                eventReference.push().setValue(new Place(sharedPreferences.getString("NAME", "NAME"), sharedPreferences.getString("ENROLL", "ENROLL"), sharedPreferences.getString("CONTACT", "CONTACT")), new DatabaseReference.CompletionListener() {
 ////
-                @Override
-                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                        progressBar.setVisibility(View.GONE);
-                        if(databaseError==null){
-                            Toast.makeText(getApplicationContext(),"Registered",Toast.LENGTH_LONG).show();
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            progressBar.setVisibility(View.GONE);
+                            if (databaseError == null) {
+                                Toast.makeText(getApplicationContext(), "Registered", Toast.LENGTH_LONG).show();
 //                            showDialogDox("You Have Been Successfully Registered.");
-                        } else {
+                            } else {
 //                            showDialogDox("Sorry There Was A Problem With Your Registration.");
+                            }
                         }
-                    }
-                });
+                    });
 
-                EventsClass data1 = new EventsClass(data.getName(),data.getDate(),data.getTime());
-                Map<String,EventsClass> listt = new HashMap<>();
-                listt.put("events",data1);
-                user_info eventParticipated = new user_info((HashMap<String, EventsClass>) listt);
-                DatabaseReference ref = firebaseDatabase.getReference("USER/"+user.getUid()+"/PARTICIPATING_EVENTS");
-                ref.push().setValue(data1);
+                    EventsClass data1 = new EventsClass(data.getName(), data.getDate(), data.getTime());
+                    Map<String, EventsClass> listt = new HashMap<>();
+                    listt.put("events", data1);
+                    user_info eventParticipated = new user_info((HashMap<String, EventsClass>) listt);
+                    DatabaseReference ref = firebaseDatabase.getReference("USER/" + user.getUid() + "/PARTICIPATING_EVENTS");
+                    ref.push().setValue(data1);
+                }
             }
         });
 

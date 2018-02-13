@@ -340,19 +340,14 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(Login.this,Categories.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            startActivity(new Intent(Login.this,Categories.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                         } else {
-                            // If sign in fails, display a message to the user.
                             handleAuthException(task);
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            //Toast.makeText(Login.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
+                     }
+    }
                 });
     } catch (Exception e) {
         Toast.makeText(Login.this, "Error : "+e.getMessage(),
@@ -369,19 +364,14 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
                                 Log.d("mylog", "signInWithEmail:success");
-
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUserProfilData();
-                                startActivity(new Intent(Login.this,Categories.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                startActivity(new Intent(Login.this,Categories.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
 
                             } else {
-                                // If sign in fails, display a message to the user.
                                 handleAuthException(task);
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                //Toast.makeText(Login.this, "Authentication failed." + task.getException(),Toast.LENGTH_SHORT).show();
-
                             }
 
                             // ...
@@ -409,7 +399,6 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-
                                 Log.d("user profile : ", "User profile updated.");
                             }
                         }
@@ -442,8 +431,6 @@ public class Login extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             try {
-
-
             } catch (Exception e){
                 e=e;
             }
@@ -604,7 +591,7 @@ public class Login extends AppCompatActivity {
     private void updateUI() {
         Log.d("Fb Login ","u are logged in");
         editor.putString("Signed in via fb or google","true");
-        startActivity(new Intent(Login.this,Categories.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        startActivity(new Intent(Login.this,Categories.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
         finish();
     }
 

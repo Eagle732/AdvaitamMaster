@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,17 +29,17 @@ import ac.nita.advaitam4.R;
 
 public class OrganisersFragment extends Fragment {
 
-
+    ListView mListView;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//    private ArrayAdapter<String> mAdapter = new ArrayAdapter<String>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	/* *
+    /* *
 	* 1. Inflate the xml
 	* 2. Setup the UI
 	* 3. Return the rootView
 	* */
-	final View rootView = inflater.inflate(R.layout.fragment_organisers, container, false);
+
+    final View rootView = inflater.inflate(R.layout.fragment_organisers, container, false);
 
         String add1 = getArguments().getString("KEY2");
         final Map<String ,String> ItemsData = new HashMap<>();
@@ -55,23 +56,24 @@ public class OrganisersFragment extends Fragment {
                     for(DataSnapshot  op : dataSnapshot.getChildren()){
 
                         String items = op.getValue().toString();
-//                        ItemsData.put("Name"+i,items);
                         Log.d("hello"+i,items);
                         myPlacesArray.add(items);
                         i++;
                     }
-                    Log.d("hello"+i,myPlacesArray.toString());
+                    Log.d("hello "+i+" ",myPlacesArray.toString());
                 }
 
                 Log.d("Tag",myPlacesArray.toString());
-                ListView mListView =  rootView.findViewById(R.id.organisers);
+                Toast.makeText(getContext(),myPlacesArray.toString(),Toast.LENGTH_SHORT).show();
+                mListView =  rootView.findViewById(R.id.organisers);
 
-                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getActivity(),R.layout.list_item,myPlacesArray){
+                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getActivity(),
+                        R.layout.list_item,myPlacesArray){
                     @NonNull
                     @Override
                     public View getView(int position, View convertView, @NonNull ViewGroup parent){
                         View view = super.getView(position,convertView,parent);
-                        TextView textView = (TextView)view.findViewById(R.id.text_11);
+                        TextView textView = view.findViewById(R.id.text_11);
                         textView.setTextColor(Color.WHITE);
                     return view;
                     }
@@ -85,14 +87,10 @@ public class OrganisersFragment extends Fragment {
             }
         });
         return rootView;
-
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String idName="event123";
-
-
     }
 }

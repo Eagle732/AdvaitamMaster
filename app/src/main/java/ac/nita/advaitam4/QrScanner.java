@@ -68,7 +68,7 @@ public class QrScanner extends Fragment {
                     //converting the data to json
                     JSONObject obj = new JSONObject(result.getContents());
                     //setting values to textviews
-                    textView1.setText(obj.getString("name"));
+                    textView1.setText(obj.getString("Name"));
                     textView2.setText(obj.getString("address"));
                 } catch (JSONException e) {
                     e.printStackTrace();

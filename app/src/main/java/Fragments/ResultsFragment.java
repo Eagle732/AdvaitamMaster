@@ -97,35 +97,5 @@ public class ResultsFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        String add1 = getArguments().getString("K");
-//        String idName = "event123";
-//        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//        DatabaseReference reference = firebaseDatabase.getReference("data/events/"+idName+"/result");
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                try {
-//
-//                    String resultList="The Winners Are .:\n\n";
-//
-//                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                        resultList+=snapshot.getValue()+"\n\n";
-//                    }
-//
-//                    TextView resultTV = (TextView)view.findViewById(R.id.result_tv);
-//                    resultTV.setText(resultList);
-//
-//
-//                } catch (Exception e){
-//                    e=e;
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
     }
 }

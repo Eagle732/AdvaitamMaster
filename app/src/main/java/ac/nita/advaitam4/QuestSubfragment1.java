@@ -63,7 +63,7 @@ public class QuestSubfragment1 extends Fragment {
 
     final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     //final DatabaseReference mCounterRef = mRootRef.child("data/user/"+user.getUid()+"/points");
-    final DatabaseReference mCounterRef = mRootRef.child("data/user/");
+    final DatabaseReference mCounterRef = mRootRef.child("USER");
 
 
 
@@ -169,7 +169,7 @@ public class QuestSubfragment1 extends Fragment {
         progressDialog2.setCancelable(false);
         progressDialog2.show();
 
-        DatabaseReference checkingReference = mRootRef.child("data/games/quest/");
+        DatabaseReference checkingReference = mRootRef.child("GAMES/quest/");
 
         checkingReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

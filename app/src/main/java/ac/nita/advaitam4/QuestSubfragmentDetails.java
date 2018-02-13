@@ -11,7 +11,10 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 
 /**
@@ -75,6 +78,9 @@ public class QuestSubfragmentDetails extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ImageView imageView = (ImageView)view.findViewById(R.id.image_view);
+        Glide.with(getContext()).load(R.drawable.quest).into(imageView);
 
 //        TextView textView = (TextView)view.findViewById(R.id.text_view);
 

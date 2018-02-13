@@ -43,7 +43,7 @@ public class UserMode extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        httpcallDownloadCounter();
+        //httpcallDownloadCounter();
 
         ImageView bgHeader = (ImageView)findViewById(R.id.bgheader);
         Glide.with(UserMode.this).load(R.drawable.advaitam_4_logo).into(bgHeader);

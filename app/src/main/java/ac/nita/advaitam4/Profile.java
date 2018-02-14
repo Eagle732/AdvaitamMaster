@@ -107,7 +107,7 @@ public class Profile extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
 //                    Log.d("valueName:", "DATA : "+ dataSnapshot);
-                    editor.putString("NAME",(String)dataSnapshot.child("Name").getValue()).apply();
+                    editor.putString("NAME",(String)dataSnapshot.child("name").getValue()).apply();
                     editor.putString("CONTACT",(String)dataSnapshot.child("contact").getValue()).apply();
                     editor.putString("ENROLL",(String)dataSnapshot.child("enroll").getValue()).apply();
                     editor.putString("COLLEGE",(String)dataSnapshot.child("college").getValue()).apply();

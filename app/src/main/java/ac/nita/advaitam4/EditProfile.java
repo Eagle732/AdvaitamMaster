@@ -124,7 +124,6 @@ public class EditProfile extends Fragment {
             user_info user_data = new user_info(uid,name,enroll,number,uri.toString(),spinnerItem);
             Log.d("data" ,"" +user_data.getUid()+"  "+user_data.getName()+"  "+user_data.getContact()+"  "+user_data.getEnroll()+"  "+user_data.getDownload_uri() + user_data.getCollege());
             mRef.child("USER").child(uid+"/USER_INFO").setValue(user_data);
-//            Log.d("tag","msg "+user_data);
             updateProfile(name,uri);
             Log.d("user data" ,"msg "+ user_data.getName()+ user_data.getEnroll() + user_data.getContact() + spinnerItem);
             Toast.makeText(getActivity()," Uploaded ",Toast.LENGTH_SHORT).show();
@@ -154,9 +153,7 @@ public class EditProfile extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Edit Profile");
-        //Button to save data
 
 
 
@@ -178,12 +175,10 @@ public class EditProfile extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()) {
-//                    Log.d("valueName:", "DATA : "+ dataSnapshot);
-                            editor.putString("NAME",(String)dataSnapshot.child("Name").getValue()).apply();
+                            editor.putString("NAME",(String)dataSnapshot.child("name").getValue()).apply();
                             editor.putString("CONTACT",(String)dataSnapshot.child("contact").getValue()).apply();
                             editor.putString("ENROLL",(String)dataSnapshot.child("enroll").getValue()).apply();
                             editor.putString("COLLEGE",(String)dataSnapshot.child("college").getValue()).apply();
-//                    editName.setText((String)dataSnapshot.child("Name").getValue());
                         }
                     }
                     @Override

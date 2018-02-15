@@ -97,7 +97,7 @@ public class UserMode extends AppCompatActivity {
 
 
     void httpcallDownloadCounter(){
-       // try {
+       // try {f
             SharedPreferences sharedPreferences = getSharedPreferences("FLAGS", MODE_PRIVATE);
             String isFirstTime = sharedPreferences.getString("is_first_time", "YES");
             if (isFirstTime.equals("YES")) {

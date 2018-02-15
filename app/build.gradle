@@ -11,16 +11,16 @@ android {
         applicationId "ac.nita.advaitam4"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 4
+        versionName "1.0.3"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             debuggable false
-            minifyEnabled true
-            useProguard true
+            minifyEnabled false
+            useProguard false
         }
         debug {
             debuggable true

@@ -31,6 +31,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import ac.nita.advaitam4.ImageViewer;
 import ac.nita.advaitam4.R;
 
 /**
@@ -116,6 +117,8 @@ public class GalleryRecyclerAdapter extends RecyclerView.Adapter<GalleryRecycler
 //        Glide.with(context).load(R.drawable.advaitam_4_logo).apply(options).into(holder.imageView10);
 
 
+
+
         Glide.with(context).load(imageUrls[position][0]).apply(options).into(holder.imageView1);
         Glide.with(context).load(imageUrls[position][1]).apply(options).into(holder.imageView2);
         Glide.with(context).load(imageUrls[position][2]).apply(options).into(holder.imageView3);
@@ -127,8 +130,41 @@ public class GalleryRecyclerAdapter extends RecyclerView.Adapter<GalleryRecycler
         Glide.with(context).load(imageUrls[position][8]).apply(options).into(holder.imageView9);
         Glide.with(context).load(imageUrls[position][9]).apply(options).into(holder.imageView10);
 
+
+        holder.imageView1.setTag(imageUrls[position][0]);
+        holder.imageView2.setTag(imageUrls[position][1]);
+        holder.imageView3.setTag(imageUrls[position][2]);
+        holder.imageView4.setTag(imageUrls[position][3]);
+        holder.imageView5.setTag(imageUrls[position][4]);
+        holder.imageView6.setTag(imageUrls[position][5]);
+        holder.imageView7.setTag(imageUrls[position][6]);
+        holder.imageView8.setTag(imageUrls[position][7]);
+        holder.imageView9.setTag(imageUrls[position][8]);
+        holder.imageView10.setTag(imageUrls[position][9]);
+
+        holder.imageView1.setOnClickListener(clickListener);
+        holder.imageView2.setOnClickListener(clickListener);
+        holder.imageView3.setOnClickListener(clickListener);
+        holder.imageView4.setOnClickListener(clickListener);
+        holder.imageView5.setOnClickListener(clickListener);
+        holder.imageView6.setOnClickListener(clickListener);
+        holder.imageView7.setOnClickListener(clickListener);
+        holder.imageView8.setOnClickListener(clickListener);
+        holder.imageView9.setOnClickListener(clickListener);
+        holder.imageView10.setOnClickListener(clickListener);
+
        
     }
+
+
+    View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(context, ImageViewer.class);
+            intent.putExtra("url",view.getTag().toString());
+            context.startActivity(intent);
+        }
+    };
 
 
     @Override

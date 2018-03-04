@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ac.nita.advaitam4">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:largeHeap="true"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="android.app.default_searchable"
             android:value=".Searchable" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -32,11 +33,10 @@
             </intent-filter>
         </service>
 
-
-        <provider android:authorities="com.facebook.app.FacebookContentProvider304603200048305"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
-
+            android:authorities="com.facebook.app.FacebookContentProvider304603200048305"
+            android:exported="true" />
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -55,48 +55,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <data android:scheme="http" android:host="deltaprogram.us"/>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <data
+                    android:host="deltaprogram.us"
+                    android:scheme="http" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Categories"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-
-      <activity
-          android:name=".TabbedActivity"
-          android:label="Events"
-          android:theme="@style/AppTheme.NoActionBar">
-      </activity>
-      <activity
-          android:name=".SplashScreen"
-          android:label="@string/title_activity_splash_screen"
-          android:theme="@style/AppTheme.NoActionBar" />
-      <activity
-          android:name=".Login"
-          android:label=""
-          android:theme="@style/AppTheme.NoActionBar" />
-      <activity
-          android:name=".UserMode"
-          android:label="@string/title_activity_user_mode"
-          android:theme="@style/AppTheme.NoActionBar" />
-      <activity
-          android:name=".ScrollingActivity"
-          android:label="@string/title_activity_scrolling"
-          android:theme="@style/AppTheme.NoActionBar" />
-
-  </application>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".TabbedActivity"
+            android:label="Events"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/title_activity_splash_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Login"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserMode"
+            android:label="@string/title_activity_user_mode"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ImageViewer"
+            android:label="@string/title_activity_image_viewer"
+            android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
 
 </manifest>
